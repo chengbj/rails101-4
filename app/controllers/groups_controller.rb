@@ -62,14 +62,14 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
 
     if current_user.is_member_of?(@group)
-      current_user.quit!(group)
+      current_user.quit!(@group)
       flash[:alert]="exit successfully!"
     else
       flash[:warning]="You are not a member of this group, how can you quit :)"
     end
 
     redirect_to group_path(@group)
-  end 
+  end
   private
 
   def group_params
